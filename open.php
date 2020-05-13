@@ -1,4 +1,7 @@
 <?php
+
+require_once('config.php');
+
 header('Content-Type: application/json');
 
 if (isset($_GET['filename']) === false) {
