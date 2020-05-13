@@ -10,7 +10,7 @@ if (isset($_POST['filename']) === false) {
 }
 
 $filename = $_POST['filename'];
-$path = __DIR__ . '/../data/' . $filename;
+$path = $data_path . $filename;
 if (file_exists($path) === false) {
     echo json_encode([
         'ok' => false,
@@ -21,7 +21,7 @@ if (file_exists($path) === false) {
     die();
 } 
 
-$filesize = file_put_contents(__DIR__ . '/../data/' . $_POST['filename'], $_POST['data']);
+$filesize = file_put_contents($data_path . $_POST['filename'], $_POST['data']);
 
 echo json_encode([
     'ok' => true,

@@ -10,7 +10,7 @@ if (isset($_GET['filename']) === false) {
 }
 
 $filename = $_GET['filename'];
-$path = __DIR__ . '/../data/' . $filename;
+$path = $data_path . $filename;
 if (file_exists($path) === false) {
     echo json_encode([
         'ok' => false,
@@ -21,7 +21,7 @@ if (file_exists($path) === false) {
     die();
 }
 
-$data = file_get_contents(__DIR__ . '/../data/' . $_GET['filename']);
+$data = file_get_contents($data_path . $_GET['filename']);
 
 echo json_encode([
     'ok' => true,
