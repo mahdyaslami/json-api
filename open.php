@@ -6,8 +6,8 @@ header('Content-Type: application/json');
 
 if (isset($_GET['filename']) === false) {
     echo json_encode([
-        'ok' => false,
-        'message' => '\'filename\' parameter does not exists.'
+        'statusCode' => 400,
+        'errorMessage' => '\'filename\' parameter does not exists.'
     ]);
     die();
 }
@@ -16,10 +16,12 @@ $filename = $_GET['filename'];
 $path = $data_path . $filename;
 if (file_exists($path) === false) {
     echo json_encode([
-        'ok' => false,
-        'message' => 'file not found.',
-        'filename' => $filename,
-        'path' => $path
+        'statusCode' => 404,
+        'errorMessage' => 'file not found.',
+        'developerMessage' => [
+            'filename' => $filename,
+            'path' => $path
+        ]
     ]);
     die();
 }
@@ -27,10 +29,11 @@ if (file_exists($path) === false) {
 $data = file_get_contents($data_path . $_GET['filename']);
 
 echo json_encode([
-    'ok' => true,
-    'message' => 'File received.',
-    'filename' => $filename,
-    'path' => $path,
-    'data' => json_decode($data)
+    'statusCode' => 200,
+    'developerMessage' => [
+        'filename' => $filename,
+        'path' => $path,
+        'data' => json_decode($data)
+    ]
 ]);
 die();
