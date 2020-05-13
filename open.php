@@ -32,8 +32,8 @@ echo json_encode([
     'statusCode' => 200,
     'developerMessage' => [
         'filename' => $filename,
-        'path' => $path,
-        'data' => json_decode($data)
-    ]
+        'path' => $path
+    ],
+    'data' => json_decode($data)
 ]);
 die();
