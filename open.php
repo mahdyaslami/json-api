@@ -21,7 +21,6 @@ if (file_exists($path) === false) {
     die();
 }
 
-
 $data = file_get_contents(__DIR__ . '/../data/' . $_GET['filename']);
 
 echo json_encode([
